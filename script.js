@@ -20,7 +20,7 @@ function updateIncomeUI(incomeAmount) {
         const totalIncome = document.getElementById("total-income");
         totalIncome.innerHTML = `₹ ${addIncome}`;
 
-        incomeLi.innerHTML = `${key} : ₹ ${value} <button class="text-blue-500" onclick="editAll()">Edit</button> <button class="text-red-500" onclick="removeIncome(${index})">Delete</button>`;
+        incomeLi.innerHTML = `${key} : ₹ ${value} <button class="text-blue-500" onclick="editIncome(${index})">Edit</button> <button class="text-red-500" onclick="removeIncome(${index})">Delete</button>`;
         incomeLog.appendChild(incomeLi);
 
     })
@@ -47,7 +47,7 @@ function updateExpenseUI(expenseAmount) {
         totalExpense.innerHTML = `₹ ${addExpense}`;
 
 
-        expenseLi.innerHTML = `${key} : ₹ ${value} <button class="text-blue-500" onclick="editAll()">Edit</button> <button class="text-red-500" onclick="removeExpense(${index})">Delete</button>`;
+        expenseLi.innerHTML = `${key} : ₹ ${value} <button class="text-blue-500" onclick="editExpense(${index})">Edit</button> <button class="text-red-500" onclick="removeExpense(${index})">Delete</button>`;
         expenseLog.appendChild(expenseLi);
 
 
@@ -215,41 +215,82 @@ function resetOption() {
 }
 
 
-function editAll() {
-    document
-        .getElementById("form")
-        .addEventListener("submit", edit);
+function editIncome(index) {
 
+    incomeAmount.splice(index, 1);
+    
+    updateIncomeUI(incomeAmount);
 
-    function edit(event) {
-        event.preventDefault();
+    let allDetail = [...incomeAmount, ...expenseAmount];
+    updateAllUI(allDetail);
 
-        const detail = document.getElementById("detail");
-        const amount = document.getElementById("amount");
+    let newDetail = prompt("Enter Description");
+    let newAmount = prompt("Enter Amount");
 
-        detail.innerHTML = prompt("Enter Description");
-        amount.innerHTML = prompt("Enter Amount");
+    incomeAmount.push({ [newDetail]: newAmount })
 
-
-        if (amount > 0) {
-            
-            incomeAmount.push({ [detail]: amount })
-            
-            updateIncomeUI(incomeAmount);
-
-        } else if (amount < 0) {
-
-            expenseAmount.push({ [detail]: amount });
-            
-            updateExpenseUI(expenseAmount);
-        }
-        let allDetail = [...incomeAmount, ...expenseAmount];
-
-        updateAllUI(allDetail);
-        // console.log(allDetail);
-        resetDescription();
-        resetAmount();
-        // removeIncome();
-        // removeExpense();
-    }
+    updateIncomeUI(incomeAmount);
+    
 }
+function editExpense(index) {
+
+    expenseAmount.splice(index, 1);
+
+    updateExpenseUI(expenseAmount);
+
+    let allDetail = [...incomeAmount, ...expenseAmount];
+    updateAllUI(allDetail);
+
+    let newDetail = prompt("Enter Description");
+    let newAmount = prompt("Enter Amount");
+
+
+    expenseAmount.push({ [newDetail]: newAmount });
+
+    updateExpenseUI(expenseAmount);
+}
+
+
+
+
+
+
+
+// function editAll() {
+//     document
+//         .getElementById("form")
+//         .addEventListener("submit", edit);
+
+
+//     function edit(event) {
+//         event.preventDefault();
+
+//         const detail = document.getElementById("detail");
+//         const amount = document.getElementById("amount");
+
+//         detail.innerHTML = prompt("Enter Description");
+//         amount.innerHTML = prompt("Enter Amount");
+
+
+//         if (amount > 0) {
+            
+//             incomeAmount.push({ [detail]: amount })
+            
+//             updateIncomeUI(incomeAmount);
+
+//         } else if (amount < 0) {
+
+//             expenseAmount.push({ [detail]: amount });
+            
+//             updateExpenseUI(expenseAmount);
+//         }
+//         let allDetail = [...incomeAmount, ...expenseAmount];
+
+//         updateAllUI(allDetail);
+//         // console.log(allDetail);
+//         resetDescription();
+//         resetAmount();
+//         // removeIncome();
+//         // removeExpense();
+//     }
+// }
