@@ -20,7 +20,7 @@ function updateIncomeUI(incomeAmount) {
         const totalIncome = document.getElementById("total-income");
         totalIncome.innerHTML = `₹ ${addIncome}`;
 
-        incomeLi.innerHTML = `${key} : ₹ ${value} <button class="text-red-500" onclick="removeIncome(${index})">Delete</button>`;
+        incomeLi.innerHTML = `${key} : ₹ ${value} <button class="text-blue-500" onclick="editAll()">Edit</button> <button class="text-red-500" onclick="removeIncome(${index})">Delete</button>`;
         incomeLog.appendChild(incomeLi);
 
     })
@@ -47,7 +47,7 @@ function updateExpenseUI(expenseAmount) {
         totalExpense.innerHTML = `₹ ${addExpense}`;
 
 
-        expenseLi.innerHTML = `${key} : ₹ ${value} <button class="text-red-500" onclick="removeExpense(${index})">Delete</button>`;
+        expenseLi.innerHTML = `${key} : ₹ ${value} <button class="text-blue-500" onclick="editAll()">Edit</button> <button class="text-red-500" onclick="removeExpense(${index})">Delete</button>`;
         expenseLog.appendChild(expenseLi);
 
 
@@ -214,3 +214,41 @@ function resetOption() {
     expenseList.classList.add("hidden");
 }
 
+
+function editAll() {
+    document
+        .getElementById("form")
+        .addEventListener("submit", edit);
+
+
+    function edit(event) {
+        event.preventDefault();
+
+        const detail = document.getElementById("detail");
+        const amount = document.getElementById("amount");
+
+        detail.innerHTML = prompt("Enter Description");
+        amount.innerHTML = prompt("Enter Amount");
+
+
+        if (amount > 0) {
+            
+            incomeAmount.push({ [detail]: amount })
+            
+            updateIncomeUI(incomeAmount);
+
+        } else if (amount < 0) {
+
+            expenseAmount.push({ [detail]: amount });
+            
+            updateExpenseUI(expenseAmount);
+        }
+        let allDetail = [...incomeAmount, ...expenseAmount];
+
+        updateAllUI(allDetail);
+        resetDescription();
+        resetAmount();
+        removeIncome();
+        removeExpense();
+    }
+}
