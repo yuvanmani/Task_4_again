@@ -246,9 +246,10 @@ function editAll() {
         let allDetail = [...incomeAmount, ...expenseAmount];
 
         updateAllUI(allDetail);
+        // console.log(allDetail);
         resetDescription();
         resetAmount();
-        removeIncome();
-        removeExpense();
+        // removeIncome();
+        // removeExpense();
     }
 }
