@@ -29,19 +29,27 @@
             </h2>
         </div>
         <form id="form">
+            <div>
+                <select id="selectTransaction"
+                    class="md:w-3/4 border outline-green-600 h-10 ml-5 w-3/4 md:ml-10 text-lg text-gray-900 font-semibold mt-5 mb-5">
+                    <option value="type">Type of transaction</option>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+            </div>
 
-            <div class="md:flex md:justify-between md:items-center m-2">
+            <div id="inputField" class="md:flex hidden md:justify-between md:items-center m-2 md:hidden lg:hidden">
                 <label for="detail" class="text-gray-800 text-lg ml-2 underline">Description :</label>
                 <br>
                 <input type="text" id="detail"
                     class="m-3 border rounded text-center px-10 py-1 ml-5 focus:outline-green-400"
-                    placeholder="Enter detail" />
+                    placeholder="Enter detail"/>
                 <br>
                 <label for="amount" class="text-gray-800 text-lg ml-2 underline">Amount :</label>
                 <br>
                 <input type="number" id="amount"
                     class="m-3 border rounded text-center px-10 py-1 ml-5 focus:outline-green-400"
-                    placeholder="Enter amount">
+                    placeholder="Enter expense in Negative">
                 <br>
                 <button id="submit"
                     class="w-full py-2 bg-green-400 text-lg text-white font-semibold rounded-md hover:bg-green-600 mt-2 md:w-20 md:py-1 md:mt-0">Submit</button>
@@ -63,7 +71,13 @@
             <button id="reset" onclick="reset()"
                 class="w-full border px-5 py-2 m-5 rounded-md bg-red-500 text-white text-lg font-semibold hover:bg-red-700 md:w-1/2">Reset</button>
         </div>
+        <p class="font-bold ml-5 mb-3 text-lg md:text-xl md:gap-2 text-blue-600 md:flex md:justify-center"><span
+                class="text-red-600">Note : </span> I request you to refer my <span class="text-green-600 underline"><a
+                    href="https://github.com/yuvanmani/Task_4_again/blob/master/README.md" target="_blank">README
+                    file</a></span> in
+            source code.</p>
     </div>
+
     <script src="./script.js"></script>
 </body>
 

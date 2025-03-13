@@ -160,6 +160,7 @@ function reset() {
     updateExpenseUI(expenseAmount);
     updateAllUI(allDetail);
     resetDropdown();
+    resetTransaction();
 };
 
 
@@ -251,7 +252,42 @@ function editExpense(index) {
 }
 
 
+const selectedTransaction = document.getElementById("selectTransaction");
+selectedTransaction.addEventListener("change",selectTransaction)
 
+function selectTransaction(){
+    const selectedValue = this.value;
+
+    const inputField = document.getElementById("inputField");
+    inputField.classList.add("hidden");
+
+    if(selectedValue === "income"){
+        inputField.classList.remove("hidden");
+        inputField.classList.remove("md:hidden");
+        inputField.classList.remove("lg:hidden");
+    }else if(selectedValue === "expense"){
+        inputField.classList.remove("hidden");
+        inputField.classList.remove("md:hidden");
+        inputField.classList.remove("lg:hidden");
+    }else{
+        inputField.classList.add("hidden");
+        inputField.classList.add("md:hidden");
+        inputField.classList.add("lg:hidden");
+    }
+}
+
+function resetTransaction() {
+    const selectIndex = document.getElementById("selectTransaction");
+    selectIndex.selectedIndex = 0;
+    resetType();
+}
+
+function resetType() {
+    const inputField = document.getElementById("inputField");
+    inputField.classList.add("hidden");
+    inputField.classList.add("md:hidden");
+  inputField.classList.add("lg:hidden");
+}
 
 
 
